@@ -79,7 +79,8 @@ function _process_assets(&$node, &$export, $module, $mode)
     $field_assets = array_diff(array_keys($node_fields), $fields_to_escape);
     $field_map = field_info_field_map();
     module_load_include('module', 'uuid_features');
-    uuid_features_load_module_includes();
+    //handling versions for uuid_features module
+    (function_exists('uuid_features_load_module_includes')) ? uuid_features_load_module_includes() : uuid_features_include();
 
     foreach ($field_assets as $field_name) {
         //@ToDo field_language is not consistant, so we are unable to use field_get_items API at this time
