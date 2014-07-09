@@ -1,4 +1,4 @@
-designssquare-lib-feature-assets
+designssquare-lib-
 ================================
 
 import/export assets referenced by variable via Feature Module
