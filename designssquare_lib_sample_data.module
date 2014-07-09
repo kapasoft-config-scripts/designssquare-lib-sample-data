@@ -24,6 +24,12 @@ function designssquare_lib_sample_data_features_api() {
             'default_hook' => 'content_assets_default_settings',
             'feature_source' => TRUE,
         ),
+        'context_override' => array(
+            'name' => 'Context Override',
+            'file' => drupal_get_path('module', 'designssquare_lib_sample_data') .'/inc/context_override.features.inc',
+            'default_hook' => 'context_override_default_settings',
+            'feature_source' => TRUE,
+        ),
     );
 }
 
