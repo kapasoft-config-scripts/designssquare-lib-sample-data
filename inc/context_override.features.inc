@@ -97,7 +97,7 @@ function context_override_features_rebuild($module) {
 
     //import all variables referencing assets
     foreach ($items as $ctx_id => $ctx) {
-        context_save($ctx);
+        (isset($ctx)) ? context_save($ctx) : '';
     }
     context_invalidate_cache();
 }
