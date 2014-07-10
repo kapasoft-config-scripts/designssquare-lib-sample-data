@@ -30,6 +30,12 @@ function designssquare_lib_sample_data_features_api() {
             'default_hook' => 'context_override_default_settings',
             'feature_source' => TRUE,
         ),
+        'strongarm_override' => array(
+            'name' => 'StrongArm Override',
+            'file' => drupal_get_path('module', 'designssquare_lib_sample_data') .'/inc/strongarm_override.features.inc',
+            'default_hook' => 'strongarm_override_default_settings',
+            'feature_source' => TRUE,
+        ),
     );
 }
 
