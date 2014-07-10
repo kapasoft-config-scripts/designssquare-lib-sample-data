@@ -98,12 +98,12 @@ function context_override_features_rebuild($module) {
     //import all variables referencing assets
     foreach ($items as $ctx_id => $ctx) {
 
-        $existing = context_load($ctx->name, TRUE);
+        $existing = context_load($ctx['name'], TRUE);
         if ($existing) {
-            drupal_write_record('context', $context, 'name');
+            drupal_write_record('context', $ctx, 'name');
         }
         else {
-            drupal_write_record('context', $context);
+            drupal_write_record('context', $ctx);
         }
         context_load(NULL, TRUE);
         context_invalidate_cache();
