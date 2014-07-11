@@ -79,7 +79,7 @@ function context_override_features_export_render($module_name, $data, $export = 
 
         //add the contest code to the feature
         if (isset($ctx)) {
-            $code[] = '$context_override[] = '. features_var_export($ctx, '') .';';
+            $code[] = '$context_override[] = ' . features_var_export($ctx, '') . ';';
         }
     }
 
@@ -92,28 +92,30 @@ function context_override_features_export_render($module_name, $data, $export = 
 /**
  * Implementation of hook_features_rebuild(). [component_hook]
  */
-function context_override_features_rebuild($module) {
+function context_override_features_rebuild($module)
+{
     $items = module_invoke($module, 'context_override_default_settings');
 
-    //import all variables referencing assets
     foreach ($items as $ctx_id => $ctx) {
-
         $existing = context_load($ctx['name'], TRUE);
         if ($existing) {
-            drupal_write_record('context', $ctx, 'name');
-        }
-        else {
+            ctools_export_set_status('context', $ctx['name'], $ctx['disabled']);
+            $status = drupal_write_record('context', $ctx, 'name');
+        } else {
+            ctools_export_set_status('context', $ctx['name'], $ctx['disabled']);
             drupal_write_record('context', $ctx);
         }
         context_load(NULL, TRUE);
         context_invalidate_cache();
     }
+
 }
 
 
 /**
  * Implementation of hook_features_revert(). [component_hook]
  */
-function context_override_features_revert($module) {
+function context_override_features_revert($module)
+{
     context_override_features_rebuild($module);
 }
