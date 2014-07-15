@@ -129,7 +129,7 @@ function variable_assets_features_rebuild($module) {
     //import all variables referencing assets
     foreach ($items as $variable_name => $file_array) {
         //transfer asset in the file system and save it in db
-        $fid = transfer_asset($file_array, $module, $variable_name);
+        $fid = _transfer_asset($file_array, $module, $variable_name);
         //update variable with the new fid
         variable_set($variable_name,$fid);
     }
