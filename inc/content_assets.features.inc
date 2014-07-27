@@ -106,8 +106,9 @@ function content_assets_features_rebuild($module) {
     //import all variables referencing assets
     foreach ($items as $uri => $dir_import) {
             $dir_name = drupal_dirname($uri);
+            $source_path = drupal_get_path('module', $module).'/assets/content/'.substr($dir_import['uri'],9);
             file_prepare_directory($dir_name, FILE_CREATE_DIRECTORY);
-            (!file_exists(drupal_realpath($uri))) ? file_unmanaged_copy($dir_import['source'], $uri) : '';
+            (!file_exists(drupal_realpath($uri))) ? file_unmanaged_copy($source_path, $uri) : '';
     }
 }
 
@@ -172,7 +173,7 @@ function _file_export($module_src_dir, $rel_path, $file){
         $uri => array(
             'uri' => $uri,
             'filename' => $file,
-            'source' => $module_src_dir . '/' . $file_ref,
+//            'source' => $module_src_dir . '/' . $file_ref,
         )
     );
 }
