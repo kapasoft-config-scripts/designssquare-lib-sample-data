@@ -8,7 +8,7 @@ function strongarm_override_features_export_options()
     $vars = strongarm_vars_load();
 
     foreach ($vars as $var_index => $var) {
-        if (preg_match('/theme/', $var_index) || preg_match('/site/', $var_index)) {
+        if (preg_match('/theme/', $var_index) || preg_match('/site/', $var_index) || preg_match('/uuid/', $var_index) || preg_match('/ds_/', $var_index)) {
             $options[$var_index] = $var->name;
         }
     }

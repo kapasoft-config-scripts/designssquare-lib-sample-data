@@ -247,10 +247,13 @@ function _find_fields_ref_assets($field_name)
     //for each asset there is a reference in the 'file_managed' table, so we use it for look up
     $table_ref = field_info_field($field_name)['foreign keys'];
     $field_names_ref_assets = array(); //array of field names referencing assets
-    foreach ($table_ref as $ref) {
-        if ($ref['table'] == 'file_managed') {
-            $field_names_ref_assets[] = array_keys($ref['columns'])[0];
+    if(isset($table_ref) && is_array($table_ref)){
+        foreach ($table_ref as $ref) {
+            if ($ref['table'] == 'file_managed') {
+                $field_names_ref_assets[] = array_keys($ref['columns'])[0];
+            }
         }
     }
+
     return $field_names_ref_assets;
 }

@@ -99,7 +99,8 @@ function context_override_features_rebuild($module)
     foreach ($items as $ctx_id => $ctx) {
         $existing = context_load($ctx['name'], TRUE);
         if ($existing) {
-            ctools_export_set_status('context', $ctx['name'], $ctx['disabled']);
+            $new_status = (isset($ctx['disabled'])) ? $ctx['disabled'] : FALSE ;
+            ctools_export_set_status('context', $ctx['name'], $new_status);
             $status = drupal_write_record('context', $ctx, 'name');
         } else {
             ctools_export_set_status('context', $ctx['name'], $ctx['disabled']);
