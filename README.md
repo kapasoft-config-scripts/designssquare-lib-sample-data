@@ -1,6 +1,7 @@
+```html
 Sample Data - to automate import/export sample data for Drupal Themes & Widgets
 ================================
-```html
+
 This is an overview of the custom module - <a href="https://www.drupal.org/sandbox/kapacs/2287423" title="Sample Data">Sample Data</a> developed and used at <a href="http://designssquare.com" title="Drupal widgets and themes">DesignsSquare.com</a> that was published at Drupal.org for anyone that finds it useful
 
 <b>Issue:</b> Widget or Theme needs sample data for kickstart. There is no automatic, easy and standard way to package Sample Data with all of its assets(i.e. images, videos,etc) part of single artifact deliverable for easy install in Drupal.
