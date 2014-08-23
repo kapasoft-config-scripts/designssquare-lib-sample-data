@@ -75,8 +75,6 @@ function content_assets_features_export($data, &$export, $module_name)
  */
 function content_assets_features_export_render($module_name, $data, $export = NULL)
 {
-    module_load_include('module', 'designssquare_lib');
-
     $code = array();
     $code[] = '$content_assets = array();';
     $code[] = '';

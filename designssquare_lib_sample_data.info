@@ -6,4 +6,6 @@ project = designssquare_lib_sample_data
 package = DesignsSquare.com.utilities
 
 projects[] = pathauto
-
+projects[] = features
+projects[] = uuid_features
+projects[] = strongarm

@@ -66,7 +66,7 @@ function designssquare_lib_sample_data_uuid_node_features_rebuild_alter(&$node, 
 //inserts alias path for each node
 function designssquare_lib_sample_data_pathauto_alias_alter(&$alias, array &$context) {
     $node = null;
-    //@ToDo Insert alias path for other times than 'node' such as 'taxanomy', 'user'
+    //@ToDo Insert alias path for other items such as 'taxanomy', 'user',etc
     $pos = strpos($context['source'],'node/');
 
     if($pos == 0){
@@ -163,9 +163,9 @@ function _process_assets(&$node, &$export, $module, $mode)
 
 function _export_asset($asset, $mod_name)
 {
-    module_load_include('module', 'designssquare_lib');
-    $dest_dir = _module_asset_dir($asset['uri'], $mod_name);
-    $dest_full_path = _module_asset_full_path($asset['uri'], $mod_name);
+//    module_load_include('module', 'designssquare_lib');
+    $dest_dir = _module_asset_dir_drupal($asset['uri'], $mod_name);
+    $dest_full_path = _module_asset_full_path_drupal($asset['uri'], $mod_name);
     if (!file_exists($dest_full_path)) {
         file_prepare_directory($dest_dir, FILE_CREATE_DIRECTORY);
         file_unmanaged_copy($asset['uri'], $dest_full_path, FILE_EXISTS_REPLACE);
@@ -176,7 +176,7 @@ function _export_asset($asset, $mod_name)
 function _transfer_asset($asset, $mod_name, $node_type)
 {
     module_load_include('module', 'designssquare_lib');
-    $source = _module_asset_full_path($asset['uri'], $mod_name);
+    $source = _module_asset_full_path_drupal($asset['uri'], $mod_name);
     $uri = $asset['uri'];
 
     if (!file_exists($source)) {
@@ -215,27 +215,6 @@ function _transfer_asset($asset, $mod_name, $node_type)
     }
 }
 
-//function _module_asset_dir($uri, $filename, $mod_name)
-//{
-//    $path_tokens = explode('/',$uri);
-//    array_pop($path_tokens);
-//    array_shift($path_tokens);
-//    array_shift($path_tokens);//remove double forward slashes
-//    $path_mod_relative = implode('/',$path_tokens);
-//    return drupal_get_path('module', $mod_name) . '/assets/public' . '/' . $path_mod_relative;
-//}
-//
-//function _module_asset_full_path($uri, $filename, $mod_name)
-//{
-//    return _module_asset_dir($uri, $filename, $mod_name).'/'._get_file_name($uri);
-//}
-//
-//function _get_file_name($uri){
-//    $path_tokens = explode('/',$uri);
-//    $filename = array_pop($path_tokens);
-//    return $filename;
-//}
-
 /*from the custom field instance locates all field names referencing assets based on 'file_managed' table
  * param: takes the field name of a custom field instance
  *
@@ -256,4 +235,28 @@ function _find_fields_ref_assets($field_name)
     }
 
     return $field_names_ref_assets;
+}
+
+
+/*********From DesignsSquare Shared Lib********/
+function _module_asset_dir_drupal($uri, $mod_name)
+{
+    $path_tokens = explode('/', $uri);
+    array_pop($path_tokens);
+    array_shift($path_tokens);
+    array_shift($path_tokens); //remove double forward slashes
+    $path_mod_relative = implode('/', $path_tokens);
+    return drupal_get_path('module', $mod_name) . '/assets/public' . '/' . $path_mod_relative;
+}
+
+function _module_asset_full_path_drupal($uri, $mod_name)
+{
+    return _module_asset_dir_drupal($uri, $mod_name) . '/' . _get_file_name_drupal($uri);
+}
+
+function _get_file_name_drupal($uri)
+{
+    $path_tokens = explode('/', $uri);
+    $filename = array_pop($path_tokens);
+    return $filename;
 }
