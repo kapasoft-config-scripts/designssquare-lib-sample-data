@@ -103,8 +103,9 @@ function variable_assets_features_export_render($module_name, $data, $export = N
             $usage_list = ($file) ? file_usage_list($file) : '';
             $usage = array_shift($usage_list);
 
+            $temp_php53 = array_keys($usage);
             $item = array(
-                array_keys($usage)[0]  => $file
+                $temp_php53[0]  => $file
             );
         }
 
