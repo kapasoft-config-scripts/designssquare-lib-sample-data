@@ -251,7 +251,8 @@ function _find_fields_ref_assets($field_name)
     if(isset($table_ref) && is_array($table_ref)){
         foreach ($table_ref as $ref) {
             if ($ref['table'] == 'file_managed') {
-                $field_names_ref_assets[] = array_keys($ref['columns'])[0];
+                $fix_php53 = array_keys($ref['columns']);
+                $field_names_ref_assets[] = $fix_php53[0];
             }
         }
     }

@@ -1,7 +1,7 @@
 name = DesignsSquare.com Library: Sample Data
 description = exporting/importing Sample Data with all of its referenced assets
 core = 7.x
-version = v.0.2
+version = v.0.3
 project = designssquare_lib_sample_data
 package = DesignsSquare.com.utilities
 
