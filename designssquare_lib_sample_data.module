@@ -101,7 +101,7 @@ function _process_assets(&$node, &$export, $module, $mode)
         $field_instance = isset($node->{$field_name}[$langcode]) ? $node->{$field_name}[$langcode] : array();
         if ($field_instance && is_array($field_instance)) {
             foreach ($field_instance as $asset) {
-                $field_type = $field_map[$field_name]['type'];
+                $field_type = (isset($field_map[$field_name]['type'])) ? $field_map[$field_name]['type'] : '';
 
                 //extract custom fields so the assets are transfered as well
                 $custom_field = array_diff(array($field_type), $core_field_types);
